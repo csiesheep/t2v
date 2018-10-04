@@ -16,15 +16,18 @@ def main(vec_fname, dest_fname):
     X, ys = load(vec_fname, dest_fname)
     regr = linear_model.LinearRegression()
 
-    ys_scores = []
-    for ith, y in enumerate(ys):
-        scores = cross_validation.cross_val_score(regr, X, y, scoring='neg_mean_squared_error', cv=5,)
-        print scores
-        print scores.mean()
-        ys_scores.append(scores.mean())
+    for k in [1000, 2000, 5000, 10000, 20000, 50000, 100000]:
+        print
+        print k
+        ys_scores = []
+        for ith, y in enumerate(ys):
+            scores = cross_validation.cross_val_score(regr, X[:k], y[:k], scoring='neg_mean_squared_error', cv=5,)
+            print scores
+            print scores.mean()
+            ys_scores.append(scores.mean())
 
-    for ith in range(len(ys_scores)/2):
-        print ith, float(ys_scores[ith*2]), float(ys_scores[ith*2+1]), float(ys_scores[ith*2] + ys_scores[ith*2+1])/2
+        for ith in range(len(ys_scores)/2):
+            print ith, float(ys_scores[ith*2]), float(ys_scores[ith*2+1]), float(ys_scores[ith*2] + ys_scores[ith*2+1])/2
 
     return 0
 

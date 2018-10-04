@@ -15,9 +15,11 @@ def main(vec_fname, time_fname):
     '''
     X, y = load(vec_fname, time_fname)
     regr = linear_model.LinearRegression()
-    scores = cross_validation.cross_val_score(regr, X, y, scoring='neg_mean_squared_error', cv=5,)
-    print scores
-    print scores.mean()
+    for k in [1000, 2000, 5000, 10000, 50000, 100000]:
+        scores = cross_validation.cross_val_score(regr, X[:k], y[:k], scoring='neg_mean_squared_error', cv=5,)
+        print k
+        print scores
+        print scores.mean()
 
     return 0
 
