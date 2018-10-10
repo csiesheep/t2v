@@ -10,23 +10,17 @@ __author__ = 'sheep'
 
 def main(fname, output_fname):
     '''\
-    %prog [options] <fname> <output_fname>
+    %prog [options] <w2v_fname> <output_fname>
     '''
+    seg2count = {}
     with open(fname) as f:
         with open(output_fname, 'w') as fo:
-            first = True
             for line in f:
-                if first:
-                    first = False
+                line = line.strip()
+                tokens = line.split(' ')
+                if len(tokens) == 2:
                     continue
-
-                if line.startswith('</s>'):
-                    continue
-#                   fo.write('<unk>%s' % line[4:])
-#                   fo.write('<s>%s' % line[4:])
-#                   fo.write('</s>%s' % line[4:])
-                else:
-                    fo.write(line)
+                fo.write('%s\n' % tokens[0])
     return 0
 
 

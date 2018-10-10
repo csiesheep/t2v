@@ -26,6 +26,9 @@ def main(fname, output_fname):
                 seg2count[seg] += 1
 
     with open(output_fname, 'w') as fo:
+#       fo.write('<unk>\n')
+#       fo.write('<s>\n')
+#       fo.write('</s>\n')
         for seg, count in sorted(seg2count.items(),
                                  key=lambda x:x[1],
                                  reverse=True):

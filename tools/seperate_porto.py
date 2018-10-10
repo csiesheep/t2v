@@ -31,9 +31,6 @@ def main(fname, output_fname1, output_fname2):
                     fo1.write('"%s"\n' % '","'.join(line))
                     line[-1] = str(xys2)
                     fo2.write('"%s"\n' % '","'.join(line))
-
-#               fo.write('"%s"\n' % '","'.join(line))
-
     return 0
 
 def separate(traj):
@@ -45,7 +42,6 @@ def separate(traj):
         else:
             traj2.append(d)
     return traj1, traj2
-    return 0
 
 
 if __name__ == '__main__':
