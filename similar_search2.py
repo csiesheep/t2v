@@ -36,7 +36,7 @@ def rank(id_, vec, traj2vec, traj2length):
     for id2, vec2 in traj2vec.items():
         if traj2length[id2] == 0:
             continue
-        score = math.sqrt(sum([(v1-v2)*(v1-v2) for v1, v2 in zip(vec, vec2)]))
+        score = sum([(v1-v2)*(v1-v2) for v1, v2 in zip(vec, vec2)])
         traj2score.append((score, id2))
     traj2score = sorted(traj2score)
     for ith, (_, id2) in enumerate(traj2score):
